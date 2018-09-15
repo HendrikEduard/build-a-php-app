@@ -1,24 +1,25 @@
 <?php
 
+defined('LNBPATH') or define('LNBPATH', __DIR__);
+defined('LNBURL') or define('LNBURL', 'http://localhost/');
+
 // *_*_*_*_*_*_*_*_*_*
 // uncomment these in production
 // ini_set('display_errors', 'Off');
 // error_reporting(0);
 // *_*_*_*_*_*_*_*_*_*
+
 ini_set('log_errors', TRUE); // Error logging
-ini_set('error_log', 'your/path/to/errors.log'); // Logging file
-ini_set('log_errors_max_len', 1024); // Logging file size
+ini_set('error_log', LNBPATH.'/logs/errors.log'); // Log file
+ini_set('log_errors_max_len', 1024); // Log file size
 
 // comment these out in production
 ini_set('display_errors', 'On');
 error_reporting(E_All);
 
 spl_autoload_register(function($class) {
-  require_once "core/{$class}.php";
+  require_once LNBPATH."/core/{$class}.php";
 });
-
-defined('LNBPATH') or define('LNBPATH', __DIR__);
-defined('LNBURL') or define('LNBURL', 'http://localhost/');
 
 function base_url($location) {return LNBURL.'/'.$location;}
 function css_url($location) {return LNBURL.'/assets/css/'.$location;}
